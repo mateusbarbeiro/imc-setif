@@ -11,19 +11,19 @@ const kNumberTextStyle = TextStyle(
   color: Colors.white,
 );
 
-const mainColor = Color(0xFF0A0E21);
-const cardColor = Color(0xFF1D1E33);
-const highlightColor = Color(0xFFEB1555);
+const kMainColor = Color(0xFF0A0E21);
+const kCardColor = Color(0xFF1D1E33);
+const kHighlightColor = Color(0xFFEB1555);
 
-final TextStyle resultStyle = TextStyle(
+final TextStyle kResultStyle = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 22,
     color: Colors.green.withBlue(120));
-const TextStyle valueStyle =
+
+const TextStyle kValueStyle =
     TextStyle(fontWeight: FontWeight.bold, fontSize: 70);
-const TextStyle descriptionStyle = TextStyle(fontSize: 20);
 
-
+const TextStyle kDescriptionStyle = TextStyle(fontSize: 20);
 
 void main() {
   runApp(const MyApp());
@@ -37,11 +37,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.dark().copyWith(
-        primaryColor: mainColor,
-        scaffoldBackgroundColor: mainColor.withAlpha(250),
+        primaryColor: kMainColor,
+        scaffoldBackgroundColor: kMainColor.withAlpha(250),
         sliderTheme: SliderTheme.of(context).copyWith(
-          thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12),
-          thumbColor: highlightColor,
+          thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12),
+          thumbColor: kHighlightColor,
           activeTrackColor: Colors.white,
           inactiveTrackColor: Colors.grey,
           trackHeight: 1,
@@ -195,8 +195,8 @@ class Results extends StatelessWidget {
         children: [
           Container(
             alignment: Alignment.centerLeft,
-            margin: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
-            child: Text('Resultado',
+            margin: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+            child: const Text('Resultado',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40)),
           ),
           Expanded(
@@ -207,15 +207,15 @@ class Results extends StatelessWidget {
                 children: [
                   Text(
                     "Normal",
-                    style: resultStyle,
+                    style: kResultStyle,
                   ),
-                  Text(
+                  const Text(
                     "22.4",
-                    style: valueStyle,
+                    style: kValueStyle,
                   ),
-                  Text(
+                  const Text(
                     "You have a normal body weight. Good job!",
-                    style: descriptionStyle,
+                    style: kDescriptionStyle,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -240,29 +240,22 @@ class Results extends StatelessWidget {
 }
 
 class ReusableCard extends StatelessWidget {
-  final Function? onPressed;
   final Widget cardChild;
 
   const ReusableCard({
     Key? key,
     required this.cardChild,
-    this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        onPressed != null ? onPressed!() : null;
-      },
-      child: Container(
-        child: cardChild,
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(20.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: cardColor,
-        ),
+    return Container(
+      child: cardChild,
+      margin: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: kCardColor,
       ),
     );
   }
@@ -306,7 +299,7 @@ class RoundIconButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      fillColor: highlightColor,
+      fillColor: kHighlightColor,
       onPressed: onPressed,
     );
   }
