@@ -11,8 +11,18 @@ const kNumberTextStyle = TextStyle(
   color: Colors.white,
 );
 
+const mainColor = Color(0xFF0A0E21);
 const cardColor = Color(0xFF1D1E33);
 const highlightColor = Color(0xFFEB1555);
+
+final TextStyle resultStyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 22,
+    color: Colors.green.withBlue(120));
+const TextStyle valueStyle =
+    TextStyle(fontWeight: FontWeight.bold, fontSize: 70);
+const TextStyle descriptionStyle = TextStyle(fontSize: 20);
+
 
 
 void main() {
@@ -26,9 +36,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: Color(0xFF0A0E21),
-        scaffoldBackgroundColor: Color(0xFF0A0E21).withAlpha(200),
+      theme: ThemeData.dark().copyWith(
+        primaryColor: mainColor,
+        scaffoldBackgroundColor: mainColor.withAlpha(250),
         sliderTheme: SliderTheme.of(context).copyWith(
           thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12),
           thumbColor: highlightColor,
@@ -180,10 +190,51 @@ class Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Resultado'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+            child: Text('Resultado',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40)),
+          ),
+          Expanded(
+            child: ReusableCard(
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Normal",
+                    style: resultStyle,
+                  ),
+                  Text(
+                    "22.4",
+                    style: valueStyle,
+                  ),
+                  Text(
+                    "You have a normal body weight. Good job!",
+                    style: descriptionStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: RoundIconButton(
+              label: "CALCULAR NOVAMENTE",
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              buttonHeight: 50,
+              buttonWight: 390,
+            ),
+          )
+        ],
       ),
-      body: Container(),
     );
   }
 }
@@ -260,4 +311,3 @@ class RoundIconButton extends StatelessWidget {
     );
   }
 }
-
