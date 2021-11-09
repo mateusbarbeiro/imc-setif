@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:imc_setif/brain/calculator.dart';
 import 'package:imc_setif/constants.dart';
 import 'package:imc_setif/screens/results.dart';
 import 'package:imc_setif/widgets/reusable_card.dart';
 import 'package:imc_setif/widgets/round_icon_button.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -19,15 +21,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Calculadora de IMC'),
-      ),
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 1,
+            flex: 2,
             child: ReusableCard(
-              color: Colors.purple.shade400,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -65,7 +63,6 @@ class _HomeState extends State<Home> {
           Expanded(
             flex: 2,
             child: ReusableCard(
-              color: Colors.purple.shade400,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -93,23 +90,27 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       RoundIconButton(
-                        icon: FontAwesomeIcons.plus,
+                        icon: Icons.add,
                         onPressed: () {
                           setState(() {
                             weight++;
                           });
                         },
+                        buttonHeight: 40,
+                        buttonWight: 40,
                       ),
                       const SizedBox(
                         width: 15.0,
                       ),
                       RoundIconButton(
-                        icon: FontAwesomeIcons.minus,
+                        icon: Icons.remove,
                         onPressed: () {
                           setState(() {
                             weight--;
                           });
                         },
+                        buttonHeight: 40,
+                        buttonWight: 40,
                       ),
                     ],
                   ),
@@ -122,9 +123,19 @@ class _HomeState extends State<Home> {
             child: RoundIconButton(
               label: "CALCULAR",
               onPressed: () {
+                var calc = Calculator(
+                  height: height,
+                  weight: weight,
+                );
+                calc.calculate();
+
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const Results(),
+                    builder: (context) => Results(
+                      result: calc.getResult(),
+                      value: calc.getValue(),
+                      description: calc.getDescription(),
+                    ),
                   ),
                 );
               },

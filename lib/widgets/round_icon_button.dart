@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imc_setif/constants.dart';
 
 class RoundIconButton extends StatelessWidget {
   const RoundIconButton({
@@ -38,7 +39,7 @@ class RoundIconButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      fillColor: Colors.purple.shade700,
+      fillColor: kHighlightColor,
       onPressed: onPressed,
     );
   }
