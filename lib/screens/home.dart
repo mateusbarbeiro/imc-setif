@@ -4,6 +4,7 @@ import 'package:imc_setif/constants.dart';
 import 'package:imc_setif/screens/results.dart';
 import 'package:imc_setif/widgets/reusable_card.dart';
 import 'package:imc_setif/widgets/round_icon_button.dart';
+import 'package:imc_setif/widgets/round_text_button.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -89,28 +90,24 @@ class _HomeState extends State<Home> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      RoundButton(
+                      RoundIconButton(
                         icon: Icons.add,
                         onPressed: () {
                           setState(() {
                             weight++;
                           });
                         },
-                        buttonHeight: 40,
-                        buttonWight: 40,
                       ),
                       const SizedBox(
                         width: 15.0,
                       ),
-                      RoundButton(
+                      RoundIconButton(
                         icon: Icons.remove,
                         onPressed: () {
                           setState(() {
                             weight--;
                           });
                         },
-                        buttonHeight: 40,
-                        buttonWight: 40,
                       ),
                     ],
                   ),
@@ -120,7 +117,7 @@ class _HomeState extends State<Home> {
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: RoundButton(
+            child: RoundTextButton(
               label: "CALCULAR",
               onPressed: () {
                 var calc = Calculator(
@@ -139,8 +136,6 @@ class _HomeState extends State<Home> {
                   ),
                 );
               },
-              buttonHeight: 50,
-              buttonWight: 390,
             ),
           )
         ],

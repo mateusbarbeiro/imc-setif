@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imc_setif/constants.dart';
 import 'package:imc_setif/widgets/reusable_card.dart';
-import 'package:imc_setif/widgets/round_icon_button.dart';
+import 'package:imc_setif/widgets/round_text_button.dart';
 
 class Results extends StatelessWidget {
   const Results({
@@ -62,15 +62,13 @@ class Results extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: RoundButton(
+            child: RoundTextButton(
               label: "CALCULAR NOVAMENTE",
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              buttonHeight: 50,
-              buttonWight: 390,
             ),
-          )
+          ),
         ],
       ),
     );

@@ -145,28 +145,24 @@ class _HomeState extends State<Home> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      RoundButton(
+                      RoundIconButton(
                         icon: Icons.add,
                         onPressed: () {
                           setState(() {
                             weight++;
                           });
                         },
-                        buttonHeight: 40,
-                        buttonWight: 40,
                       ),
                       const SizedBox(
                         width: 15.0,
                       ),
-                      RoundButton(
+                      RoundIconButton(
                         icon: Icons.remove,
                         onPressed: () {
                           setState(() {
                             weight--;
                           });
                         },
-                        buttonHeight: 40,
-                        buttonWight: 40,
                       ),
                     ],
                   ),
@@ -176,7 +172,7 @@ class _HomeState extends State<Home> {
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: RoundButton(
+            child: RoundTextButton(
               label: "CALCULAR",
               onPressed: () {
                 var calc = Calculator(
@@ -195,8 +191,6 @@ class _HomeState extends State<Home> {
                   ),
                 );
               },
-              buttonHeight: 50,
-              buttonWight: 390,
             ),
           )
         ],
@@ -305,15 +299,13 @@ class Results extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: RoundButton(
+            child: RoundTextButton(
               label: "CALCULAR NOVAMENTE",
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              buttonHeight: 50,
-              buttonWight: 390,
             ),
-          )
+          ),
         ],
       ),
     );
@@ -342,46 +334,62 @@ class ReusableCard extends StatelessWidget {
   }
 }
 
-class RoundButton extends StatelessWidget {
-  const RoundButton({
+class RoundIconButton extends StatelessWidget {
+  const RoundIconButton({
     Key? key,
-    this.label,
-    this.icon,
+    required this.icon,
     required this.onPressed,
-    this.buttonHeight = 100,
-    this.buttonWight = 100,
   }) : super(key: key);
 
-  final String? label;
-  final double buttonHeight;
-  final double buttonWight;
-  final IconData? icon;
+  final IconData icon;
   final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: icon != null
-          ? Icon(
-              icon,
-              color: Colors.white,
-            )
-          : Text(
-              label ?? "",
-              style: const TextStyle(
-                color: Colors.white,
-              ),
-            ),
-      elevation: 6.0,
-      constraints: BoxConstraints.tightFor(
-        width: buttonWight,
-        height: buttonHeight,
+    return Container(
+      child: IconButton(
+        icon: Icon(
+          icon,
+          color: Colors.white,
+        ),
+        onPressed: onPressed,
       ),
-      shape: RoundedRectangleBorder(
+      decoration: BoxDecoration(
+        color: kHighlightColor,
         borderRadius: BorderRadius.circular(10.0),
       ),
-      fillColor: kHighlightColor,
-      onPressed: onPressed,
+    );
+  }
+}
+
+class RoundTextButton extends StatelessWidget {
+  const RoundTextButton({
+    Key? key,
+    required this.onPressed,
+    required this.label,
+  }) : super(key: key);
+
+  final void Function()? onPressed;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: TextButton(
+        onPressed: onPressed,
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+      decoration: BoxDecoration(
+        color: kHighlightColor,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      width: double.infinity,
+      height: 50.0,
     );
   }
 }
