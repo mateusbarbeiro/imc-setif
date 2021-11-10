@@ -145,7 +145,7 @@ class _HomeState extends State<Home> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      RoundIconButton(
+                      RoundButton(
                         icon: Icons.add,
                         onPressed: () {
                           setState(() {
@@ -158,7 +158,7 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         width: 15.0,
                       ),
-                      RoundIconButton(
+                      RoundButton(
                         icon: Icons.remove,
                         onPressed: () {
                           setState(() {
@@ -176,7 +176,7 @@ class _HomeState extends State<Home> {
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: RoundIconButton(
+            child: RoundButton(
               label: "CALCULAR",
               onPressed: () {
                 var calc = Calculator(
@@ -305,7 +305,7 @@ class Results extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: RoundIconButton(
+            child: RoundButton(
               label: "CALCULAR NOVAMENTE",
               onPressed: () {
                 Navigator.of(context).pop();
@@ -342,8 +342,8 @@ class ReusableCard extends StatelessWidget {
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({
+class RoundButton extends StatelessWidget {
+  const RoundButton({
     Key? key,
     this.label,
     this.icon,

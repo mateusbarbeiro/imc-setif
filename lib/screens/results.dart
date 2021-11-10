@@ -62,7 +62,7 @@ class Results extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: RoundIconButton(
+            child: RoundButton(
               label: "CALCULAR NOVAMENTE",
               onPressed: () {
                 Navigator.of(context).pop();

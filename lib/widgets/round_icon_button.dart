@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imc_setif/constants.dart';
 
-class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({
+class RoundButton extends StatelessWidget {
+  const RoundButton({
     Key? key,
     this.label,
     this.icon,
